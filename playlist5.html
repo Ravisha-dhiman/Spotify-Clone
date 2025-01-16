@@ -1,0 +1,301 @@
+<html>
+    <head>
+        <title>CHILL VIBES</title>
+        <style>@import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
+body{
+	background-color:white;
+}
+*{
+    
+    margin:0;
+    padding:0;
+}
+nav{
+	font-family:'Ubuntu',sans-serif;
+	
+}
+nav ul{
+	display:flex;
+	align-items:center;
+	list-style-type: none;
+    height: 65px;
+	background-color:#458c58;
+	color:white;
+	text-shadow:1px 1px 3px antiquewhite;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 10px 0 rgba(0, 0, 0, 0.19);
+	border-radius:12px;
+	}
+nav ul li{
+	padding:0 50px;
+}
+.items{
+	font-family:font-family:'Varela Round',sans-serif;
+	font-size:20px;
+	font-weight:bolder;
+	box-shadow:2px 2px 5px black;
+	border-radius:15px;
+	padding:10px;
+	margin:20px;
+	cursor:pointer;
+	color:black;
+}
+.brand img{
+	width:44px;
+	padding:0 8px;
+}
+.brand{
+	display:flex;
+	align-items:center;
+	font-weight:bolder;
+	font-size:22px;
+	color:black;
+}
+.container{
+	background-color:#458c58;
+	min-height:72vh;
+	color:black;
+	font-family:'Varela Round',sans-serif;
+	display:flex;
+	margin:20px auto;
+	width:70%;
+	border-radius:15px;
+	padding:30px;
+	background-image:url('guitar.jpg');
+    background-size:cover;
+	background-repeat:no-repeat;
+	flex-direction:column;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 10px 0 rgba(0, 0, 0, 0.19);
+
+}
+.bottom{
+	position:sticky;
+	height:100px;
+	background-color:#458c58;
+	bottom:0;
+	display:flex;
+	justify-content:center;
+	align-items:center;
+	color:white;
+	flex-direction:column;
+	border-radius:12px;
+}
+.icons{
+	margin-top:12px;
+	
+}
+.icons i{
+	cursor:pointer;
+}
+#myProgressBar{
+	width:80vw;
+	cursor:pointer;
+}
+.songItem{
+	height:70px;
+	display:flex;
+	background-color:white;
+	width:40%;
+	color:black;
+	margin:12px 0;
+	justify-content:space-between;
+	align-items:center;
+	border-radius:34px;
+	
+}
+.songItem img{
+	width:50px;
+	margin:0 20px ;
+	border-radius:34px;
+}	
+.timestamp{
+	margin:0 23px;
+}
+.timestamp i{
+	cursor:pointer;
+}
+.SongItemContainer{
+	margin-top:70px;
+}
+.songInfo{
+	position:absolute;
+	left:10vw;
+	font-family:'Varela Round',sans-serif;
+	
+}
+.songInfo img{
+    opacity:0;
+	transition:opacity 0.4s ease-in;
+}
+
+.songName{
+		font-family:'Ubuntu',sans-serif;
+        font-weight:bolder;
+		font-size:20px;
+}
+		</style>
+        </head>
+<body>
+    <nav>
+        <ul>
+            <li class="brand"><img src="logo.png" alt="Spotify">SPOTIFY</li>
+            <li class="items" type="button" onclick="window.location.href ='file:///C:/CSS%20%20files/index.html'" >HOME</li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <div class="songList">
+            <h1 style="color:antiquewhite;">CHILL VIBES</h1>
+            <div class="SongItemContainer">
+                <div class="songItem">
+                    <img src="10.jpg" alt="1">
+                    <span class="songName"></span>
+                    <span class="songlistplay"><span class="timestamp">4.47 <i id="0" class="far songItemPlay fa-play-circle"></i> </span></span>
+                </div>
+                <div class="songItem">
+                    <img src="10.jpg" alt="1">
+                    <span class="songName"></span>
+                    <span class="songlistplay"><span class="timestamp">5:17 <i id="1" class="far songItemPlay fa-play-circle"></i> </span></span>
+                </div>
+                <div class="songItem">
+                    <img src="10.jpg" alt="1">
+                    <span class="songName"></span>
+                    <span class="songlistplay"><span class="timestamp">2:33 <i id="2" class="far songItemPlay fa-play-circle"></i> </span></span>
+                </div>
+                <div class="songItem">
+                    <img src="10.jpg" alt="1">
+                    <span class="songName"></span>
+                    <span class="songlistplay"><span class="timestamp">4:24 <i id="3" class="far songItemPlay fa-play-circle"></i> </span></span>
+                </div>
+            </div>
+        </div>
+        <div class="SongBanner"></div>
+    </div>
+
+    <div class="bottom">
+        <input type="range" name="range" id="myProgressBar" min="0" value="0" max="100">
+        <div class="icons">
+            <!-- fontawesome icons -->
+            <i class="fas fa-3x fa-step-backward" id="previous"></i>
+            <i class="far fa-3x fa-play-circle" id="masterPlay"></i>
+            <i class="fas fa-3x fa-step-forward" id="next"></i> 
+        </div>
+        <div class="songInfo">
+            <img src="playing.gif" width="45px" id="gif"><span id="masterSongName" style="font-size:25px;font-family:georgia;"></span>
+        </div>
+    </div>
+    <script src="https://kit.fontawesome.com/1276cd2e15.js" crossorigin="anonymous"></script>
+	<script>
+	console.log("Welcome to spotify");
+let songIndex = 0;
+let audioElement = new Audio('9.mp3');
+let masterPlay= document.getElementById('masterPlay');
+let myProgressBar= document.getElementById('myProgressBar');
+let gif= document.getElementById('gif');
+let masterSongName = document.getElementById('masterSongName');
+let songItems = Array.from(document.getElementsByClassName('songItem'));
+let songs=[
+{songName:"Tum Hi Ho Bandhu",filePath: "1.mp3",coverPath:"cover.jpeg"},
+{songName:"Mein Koi Aesa Geet",filePath: "2.mp3",coverPath:"cover.jpeg"},
+{songName:"Hass Hass  ",filePath: "3.mp3",coverPath:"cover.jpeg"},
+{songName:"Tum Se ",filePath: "4.mp3",coverPath:" cover.jpeg"},
+]
+
+songItems.forEach((element, i)=>{ 
+    element.getElementsByTagName("img")[0].src = songs[i].coverPath; 
+    element.getElementsByClassName("songName")[0].innerText = songs[i].songName; 
+})
+
+
+masterPlay.addEventListener('click',()=>{
+	if(audioElement.paused || audioElement.currentTime<=0){
+		audioElement.play();
+		masterPlay.classList.remove('fa-play-circle');
+		masterPlay.classList.add('fa-pause-circle');
+		gif.style.opacity = 1;
+	}
+	else{
+		audioElement.pause();
+		masterPlay.classList.remove('fa-pause-circle');
+		masterPlay.classList.add('fa-play-circle');
+		gif.style.opacity = 0;
+	}
+})
+audioElement.addEventListener('timeupdate',()=>{
+	progress = parseInt((audioElement.currentTime/audioElement.duration)*100);
+	myProgressBar.value = progress;
+})
+myProgressBar.addEventListener('change',()=>{
+	audioElement.currentTime = myProgressBar.value * audioElement.duration/100;
+})
+const makeAllPlays =()=>{
+	Array.from(document.getElementsByClassName('songItemPlay')).forEach((element)=>{
+		element.classList.remove('fa-pause-circle');
+	    element.classList.add('fa-play-circle');
+    })
+}
+Array.from(document.getElementsByClassName('songItemPlay')).forEach((element)=>{
+	element.addEventListener('click',(e)=>{
+		console.log(e.target);
+		makeAllPlays();
+		songIndex = parseInt(e.target.id);
+		e.target.classList.remove('fa-play-circle');
+		e.target.classList.add('fa-pause-circle');
+		audioElement.src=`${songIndex+1}.mp3`;
+		masterSongName.innerText = songs[songIndex].songName;
+		audioElement.currentTime = 0;
+		audioElement.play();
+		gif.style.opacity = 1;
+		masterPlay.classList.remove('fa-play-circle');
+		masterPlay.classList.add('fa-pause-circle');
+		
+		
+	})
+})
+document.getElementById('next').addEventListener('click',()=>{
+	if(songIndex>=9){
+	songIndex=0
+	}
+	else{
+	songIndex += 1;
+		
+	}
+        audioElement.src=`${songIndex+1}.mp3`;
+		masterSongName.innerText = songs[songIndex].songName;
+		audioElement.currentTime = 0;
+		audioElement.play();
+		masterPlay.classList.remove('fa-play-circle');
+		masterPlay.classList.add('fa-pause-circle');
+	
+	
+})
+document.getElementById('previous').addEventListener('click',()=>{
+	if(songIndex<=0){
+	songIndex=0
+	}
+	else{
+	songIndex -= 1;
+		
+	}
+        audioElement.src=`${songIndex+1}.mp3`;
+		masterSongName.innerText = songs[songIndex].songName;
+		audioElement.currentTime = 0;
+		audioElement.play();
+		masterPlay.classList.remove('fa-play-circle');
+		masterPlay.classList.add('fa-pause-circle');
+	
+	
+})
+	</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
